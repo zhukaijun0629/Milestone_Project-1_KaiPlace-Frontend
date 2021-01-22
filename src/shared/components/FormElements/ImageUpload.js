@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import imageCompression from "browser-image-compression";
 
 import Button from "./Button";
 import "./ImageUpload.css";
@@ -27,14 +28,32 @@ const ImageUpload = (props) => {
     let fileIsValid = isValid;
     if (event.target.files && event.target.files.length === 1) {
       pickedFile = event.target.files[0];
-      setFile(pickedFile);
-      setIsValid(true);
-      fileIsValid = true;
+
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1920,
+        useWebWorker: true,
+      };
+
+      imageCompression(pickedFile, options)
+        .then(function (compressedFile) {
+          setFile(compressedFile);
+          setIsValid(true);
+          fileIsValid = true;
+          props.onInput(props.id, compressedFile, fileIsValid);
+        })
+        .catch(function (err) {
+          alert(err.message);
+        });
+
+      // setFile(pickedFile);
+      // setIsValid(true);
+      // fileIsValid = true;
     } else {
       setIsValid(false);
       fileIsValid = false;
     }
-    props.onInput(props.id, pickedFile, fileIsValid);
+    // props.onInput(props.id, pickedFile, fileIsValid);
   };
 
   const pickImageHandler = () => {
