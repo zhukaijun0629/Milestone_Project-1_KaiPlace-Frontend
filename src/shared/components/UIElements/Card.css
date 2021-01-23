@@ -1,8 +1,10 @@
+@import "../variables.css";
+
 .card {
   margin: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 6px;
   padding: 1rem;
   overflow: hidden;
-  background: linear-gradient(to right ,hsl(197, 59%, 90%),hsl(197, 59%, 85%))
+  background: linear-gradient(to right ,hsl(var(--color-base-hue), 60%, 95%),hsl(var(--color-base-hue), 60%, 90%));
 }

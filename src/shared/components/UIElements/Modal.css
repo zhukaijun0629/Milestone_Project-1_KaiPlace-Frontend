@@ -1,10 +1,12 @@
+@import "../variables.css";
+
 .modal {
   z-index: 100;
   position: fixed;
   top: 22vh;
   left: 10%;
   width: 80%;
-  background: white;
+  background: linear-gradient(to right ,hsl(var(--color-base-hue), 60%, 95%),hsl(var(--color-base-hue), 60%, 90%));
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 8px;
 }
@@ -12,9 +14,9 @@
 .modal__header {
   width: 100%;
   padding: 1rem 0.5rem;
-  background: #2a006e;
-  color: white;
-  font-size: .75rem;
+  background: linear-gradient(to right ,hsl(var(--color-base-hue), 100%, 10%),hsl(var(--color-base-hue), 100%, 16%));
+  color: var(--color-text-light);
+  font-size: 0.75rem;
 }
 
 .modal__header h2 {

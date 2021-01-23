@@ -1,3 +1,5 @@
+@import "../../shared/components/variables.css";
+
 .place-form {
   list-style: none;
   margin: 0 auto;
@@ -6,5 +8,5 @@
   max-width: 40rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 6px;
-  background: linear-gradient(to right ,hsl(197, 59%, 90%),hsl(197, 59%, 85%))
+  background: linear-gradient(to right ,hsl(var(--color-base-hue), 100%, 95%),hsl(var(--color-base-hue), 100%, 90%))
 }

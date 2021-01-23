@@ -16,6 +16,7 @@
 .form-control input,
 .form-control textarea {
   width: 100%;
+  resize: vertical;
   font: inherit;
   border: 1px solid #ccc;
   background: #f8f8f8;
