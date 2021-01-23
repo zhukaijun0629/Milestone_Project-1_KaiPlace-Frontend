@@ -21,3 +21,7 @@
   height: 100%;
   object-fit: cover;
 }
+
+.image-upload__preview:hover {
+  cursor: pointer;
+}

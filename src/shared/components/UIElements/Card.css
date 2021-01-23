@@ -4,5 +4,5 @@
   border-radius: 6px;
   padding: 1rem;
   overflow: hidden;
-  background: white;
+  background: linear-gradient(to right ,hsl(197, 59%, 90%),hsl(197, 59%, 85%))
 }

@@ -71,11 +71,15 @@ const ImageUpload = (props) => {
         onChange={pickedHandler}
       />
       <div className={`image-upload ${props.center && "center"}`}>
-        <div className="image-upload__preview">
+        <div className="image-upload__preview" onClick={pickImageHandler}>
           {previewUrl && <img src={previewUrl} alt="Preview" />}
           {!previewUrl && <p>Please pick an image.</p>}
         </div>
-        <Button type="button" onClick={pickImageHandler}>
+        <Button
+          inverse
+          type="button"
+          onClick={pickImageHandler}
+        >
           PICK IMAGE
         </Button>
       </div>

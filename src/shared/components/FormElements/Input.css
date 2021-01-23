@@ -31,7 +31,7 @@
 
 .form-control--invalid label,
 .form-control--invalid p {
-  color: red;
+  color: rgb(255, 0, 0);
 }
 
 .form-control--invalid input,

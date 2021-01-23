@@ -1,9 +1,13 @@
+@import "../variables.css";
+
 .main-navigation__menu-btn {
   width: 3rem;
   height: 3rem;
   background: transparent;
   border: none;
   display: flex;
+  position: absolute;
+  right: 0;
   flex-direction: column;
   justify-content: space-around;
   margin-right: 2rem;
@@ -14,16 +18,16 @@
   display: block;
   width: 3rem;
   height: 2.5px;
-  background: white;
+  background: var(--color-text-light);
 }
 
 .main-navigation__title {
-  color: white;
+  color: var(--color-text-light);
 }
 
 .main-navigation__title a {
   text-decoration: none;
-  color: white;
+  color: var(--color-text-light);
 }
 
 .main-navigation__header-nav {
