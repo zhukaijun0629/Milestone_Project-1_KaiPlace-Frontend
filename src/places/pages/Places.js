@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 
 import PlaceList from "../components/PlaceList";
 
-const UserPlaces = () => {
+const Places = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const userId = useParams().userId;
   const [loadedPlaces, setLoadedPlaces] = useState();
 
   useEffect(() => {
-    const fetchPlacesByUserId = async () => {
+    const fetchRecentPlaces = async () => {
       try {
         const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/places/user/${userId}`
+          `${process.env.REACT_APP_BACKEND_URL}/places/`
         );
         setLoadedPlaces(responseData.places);
-      } catch (err) {setLoadedPlaces([])}
+      } catch (err) {}
     };
-    fetchPlacesByUserId();
-  }, [sendRequest, userId]);
-
+    fetchRecentPlaces();
+  }, [sendRequest]);
+  
   console.log(loadedPlaces)
 
   const placeDeletedHandler = (deletedPlaceId) => {
@@ -46,4 +44,4 @@ const UserPlaces = () => {
   );
 };
 
-export default UserPlaces;
+export default Places;

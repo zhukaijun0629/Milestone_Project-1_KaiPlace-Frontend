@@ -24,11 +24,15 @@ const UpdatePlace = () => {
 
   const [formState, inputHandler, setFormData] = useForm(
     {
-      title: {
+      // title: {
+      //   value: "",
+      //   isValid: false,
+      // },
+      description: {
         value: "",
         isValid: false,
       },
-      description: {
+      address: {
         value: "",
         isValid: false,
       },
@@ -45,12 +49,16 @@ const UpdatePlace = () => {
         setLoadedPlace(responseData.place);
         setFormData(
           {
-            title: {
-              value: responseData.place.title,
-              isValid: true,
-            },
+            // title: {
+            //   value: responseData.place.title,
+            //   isValid: true,
+            // },
             description: {
               value: responseData.place.description,
+              isValid: true,
+            },
+            address: {
+              value: responseData.place.address,
               isValid: true,
             },
           },
@@ -68,15 +76,16 @@ const UpdatePlace = () => {
         `${process.env.REACT_APP_BACKEND_URL}/places/${placeId}`,
         "PATCH",
         JSON.stringify({
-          title: formState.inputs.title.value,
+          // title: formState.inputs.title.value,
           description: formState.inputs.description.value,
+          address: formState.inputs.address.value,
         }),
         {
           "Content-Type": "application/json",
-          "Authorization": "Bearer " + auth.token,
+          Authorization: "Bearer " + auth.token,
         }
       );
-      history.push("/"+auth.userId+"/places");
+      history.push("/" + auth.userId + "/places");
     } catch (error) {}
   };
 
@@ -103,7 +112,7 @@ const UpdatePlace = () => {
       <ErrorModal error={error} onClear={clearError} />
       {!isLoading && loadedPlace && (
         <form className="place-form" onSubmit={placeUpdateSubmitHandler}>
-          <Input
+          {/* <Input
             id="title"
             element="input"
             type="text"
@@ -113,7 +122,7 @@ const UpdatePlace = () => {
             onInput={inputHandler}
             initialValue={loadedPlace.title}
             initialValid={true}
-          />
+          /> */}
           <Input
             id="description"
             element="textarea"
@@ -122,6 +131,16 @@ const UpdatePlace = () => {
             errorText="Please enter a valid description (min. 5 characters)."
             onInput={inputHandler}
             initialValue={loadedPlace.description}
+            initialValid={true}
+          />
+          <Input
+            id="address"
+            element="input"
+            label="Address"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a valid address."
+            onInput={inputHandler}
+            initialValue={loadedPlace.address}
             initialValid={true}
           />
           <Button type="submit" disabled={!formState.isValid}>

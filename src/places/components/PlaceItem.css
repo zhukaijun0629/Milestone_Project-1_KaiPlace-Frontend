@@ -3,12 +3,13 @@
 }
 
 .card.place-item__content {
-  padding: 0 ;
+  padding: 0;
 }
 
 .place-item__info {
+  border-top: 0;
   padding: 1rem;
-  text-align: center;
+  padding-top: 0;
 }
 
 .place-item__image {
@@ -24,20 +25,46 @@
   object-fit: scale-down;
 }
 
-.place-item__info h2,
-.place-item__info h3,
+.place-item__info h3 {
+  padding-top: 0;
+  margin-top: 0;
+  text-align:right;
+}
 .place-item__info p {
   margin: 0 0 0.5rem 0;
 }
 
 .place-item__info h3 {
-  font-size:1rem;
+  font-size: 1rem;
 }
 
 .place-item__actions {
   padding: 1rem;
   text-align: center;
   border-top: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
+
+.place-item__actions-buttons {
+  clear: right;
+}
+
+.place-item__creator-info {
+  right: 0;
+  float: right;
+  align-items: center;
+  display: flex;
+  text-decoration: none;
+  color: black;
+  justify-content: flex-end;
+}
+
+.place-item__creator-info .avatar {
+  width: 4rem;
+  height: 4rem;
+  margin-left: 1rem;
 }
 
 .place-item__modal-content {

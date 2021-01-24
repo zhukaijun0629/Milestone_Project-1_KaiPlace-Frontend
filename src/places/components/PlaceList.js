@@ -1,12 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { useParams } from "react-router-dom";
+
 
 import Card from '../../shared/components/UIElements/Card';
 import PlaceItem from './PlaceItem';
 import Button from '../../shared/components/FormElements/Button';
+import { AuthContext } from "../../shared/context/auth-context";
 import './PlaceList.css';
 
 const PlaceList = props => {
-  if (props.items.length === 0) {
+  const auth = useContext(AuthContext);
+  const userId = useParams().userId;
+  if (props.items.length === 0 && auth.userId === userId) {
     return (
       <div className="place-list center">
         <Card>
@@ -24,10 +29,12 @@ const PlaceList = props => {
           key={place.id}
           id={place.id}
           image={place.image}
-          title={place.title}
+          // title={place.title}
           description={place.description}
           address={place.address}
-          creatorId={place.creator}
+          creatorId={place.creator.id || place.creator}
+          creatorImage={place.creator.image}
+          creatorName={place.creator.name}
           coordinates={place.location}
           onDelete={props.onDeletePlace}
         />

@@ -1,5 +1,7 @@
 import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 
+import Avatar from "../../shared/components/UIElements/Avatar";
 import Card from "../../shared/components/UIElements/Card";
 import Button from "../../shared/components/FormElements/Button";
 import ErrorModal from "../../shared/components/UIElements/ErrorModal";
@@ -86,29 +88,44 @@ const PlaceItem = (props) => {
         <Card className="place-item__content">
           {isLoading && <LoadingSpinner asOverlay />}
           <div className="place-item__image">
-            <img
-              src={`${props.image}`}
-              alt={props.title}
-            />
+            <img src={`${props.image}`} alt={props.description} />
           </div>
           <div className="place-item__info">
-            <h2>{props.title}</h2>
+            {/* <h2>{props.title}</h2> */}
             <h3>{props.address}</h3>
             <p>{props.description}</p>
           </div>
           <div className="place-item__actions">
-            <Button inverse onClick={openMapHandler}>
-              VIEW ON MAP
-            </Button>
-            {auth.userId === props.creatorId && (
-              <Button to={`/places/${props.id}`}>EDIT</Button>
-            )}
-
-            {auth.userId === props.creatorId && (
-              <Button danger onClick={showDeleteWarningHandler}>
-                DELETE
+            <div className="place-item__actions-buttons">
+              <Button inverse onClick={openMapHandler}>
+                MAP
               </Button>
-            )}
+
+              {auth.userId === props.creatorId && (
+                <Button to={`/places/${props.id}`}>EDIT</Button>
+              )}
+
+              {auth.userId === props.creatorId && (
+                <Button danger onClick={showDeleteWarningHandler}>
+                  DELETE
+                </Button>
+              )}
+            </div>
+
+            {!window.location.pathname.includes(props.creatorId) &&
+              props.creatorId &&
+              auth.userId !== props.creatorId && (
+                <Link
+                  className="place-item__creator-info"
+                  to={`/${props.creatorId}/places`}
+                >
+                  <h3>{props.creatorName}</h3>
+                  <Avatar
+                    image={`${props.creatorImage}`}
+                    alt={props.creatorName}
+                  />
+                </Link>
+              )}
           </div>
         </Card>
       </li>

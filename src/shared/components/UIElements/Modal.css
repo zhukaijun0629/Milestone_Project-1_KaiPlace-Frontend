@@ -3,9 +3,10 @@
 .modal {
   z-index: 100;
   position: fixed;
-  top: 22vh;
+  top: 15vh;
   left: 10%;
   width: 80%;
+  max-height:fit-content;
   background: linear-gradient(to right ,hsl(var(--color-base-hue), 60%, 95%),hsl(var(--color-base-hue), 60%, 90%));
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 8px;
@@ -58,4 +59,8 @@
   transform: translateY(-10rem);
   opacity: 0;
   transition: all 200ms;
+}
+
+body.modal-enter-done {
+  overflow: hidden;
 }
