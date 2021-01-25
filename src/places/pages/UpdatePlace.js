@@ -49,10 +49,6 @@ const UpdatePlace = () => {
         setLoadedPlace(responseData.place);
         setFormData(
           {
-            // title: {
-            //   value: responseData.place.title,
-            //   isValid: true,
-            // },
             description: {
               value: responseData.place.description,
               isValid: true,
@@ -76,7 +72,6 @@ const UpdatePlace = () => {
         `${process.env.REACT_APP_BACKEND_URL}/places/${placeId}`,
         "PATCH",
         JSON.stringify({
-          // title: formState.inputs.title.value,
           description: formState.inputs.description.value,
           address: formState.inputs.address.value,
         }),
@@ -112,17 +107,6 @@ const UpdatePlace = () => {
       <ErrorModal error={error} onClear={clearError} />
       {!isLoading && loadedPlace && (
         <form className="place-form" onSubmit={placeUpdateSubmitHandler}>
-          {/* <Input
-            id="title"
-            element="input"
-            type="text"
-            label="Title"
-            validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a valid title."
-            onInput={inputHandler}
-            initialValue={loadedPlace.title}
-            initialValid={true}
-          /> */}
           <Input
             id="description"
             element="textarea"

@@ -10,7 +10,7 @@ import {
 // import NewPlace from "./places/pages/NewPlace";
 // import UserPlaces from "./places/pages/UserPlaces";
 // import UpdatePlace from "./places/pages/UpdatePlace";
-// import Auth from "./user/pages/Auth";
+import UpdateUser from "./user/pages/UpdateUser";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import { AuthContext } from "./shared/context/auth-context";
 import { useAuth } from "./shared/hooks/auth-hook";
@@ -22,6 +22,7 @@ const NewPlace = React.lazy(() => import("./places/pages/NewPlace"));
 const UserPlaces = React.lazy(() => import("./places/pages/UserPlaces"));
 const UpdatePlace = React.lazy(() => import("./places/pages/UpdatePlace"));
 const Auth = React.lazy(() => import("./user/pages/Auth"));
+// const UpdateUser = React.lazy(() => import("./user/pages/UpdateUser"));
 
 const App = () => {
   const { token, login, logout, userId } = useAuth();
@@ -37,13 +38,16 @@ const App = () => {
         <Route path="/places" exact>
           <Places />
         </Route>
+        <Route path="/:userId/update" exact>
+          <UpdateUser />
+        </Route>
         <Route path="/:userId/places" exact>
           <UserPlaces />
         </Route>
         <Route path="/places/new" exact>
           <NewPlace />
         </Route>
-        <Route path="/places/:placeId">
+        <Route path="/places/:placeId" exact>
           <UpdatePlace />
         </Route>
         <Redirect to="/places" />

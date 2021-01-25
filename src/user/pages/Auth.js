@@ -7,6 +7,7 @@ import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 import {
+  VALIDATOR_CFMPASSWD,
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
@@ -40,6 +41,7 @@ const Auth = () => {
       setFormData(
         {
           ...formState.inputs,
+          password_confirm: undefined,
           name: undefined,
           image: undefined,
         },
@@ -49,6 +51,10 @@ const Auth = () => {
       setFormData(
         {
           ...formState.inputs,
+          password_confirm: {
+            value: "",
+            isValid: false,
+          },
           name: {
             value: "",
             isValid: false,
@@ -133,6 +139,17 @@ const Auth = () => {
             errorText="Please enter a valid password, at least 6 characters."
             onInput={inputHandler}
           />
+          {!isLoginMode && (
+            <Input
+              element="input"
+              id="password_confirm"
+              type="password"
+              label="Confirm Password"
+              validators={[VALIDATOR_CFMPASSWD(formState.inputs.password.value)]}
+              errorText="Please verify your passwords."
+              onInput={inputHandler}
+            />
+          )}
           {!isLoginMode && (
             <Input
               element="input"

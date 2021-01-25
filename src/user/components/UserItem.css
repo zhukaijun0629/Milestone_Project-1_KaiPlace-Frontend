@@ -1,3 +1,5 @@
+@import "../../shared/components/variables.css";
+
 .user-item {
   margin: 1rem;
   width: calc(45% - 2rem);
@@ -15,13 +17,14 @@
   background: #292929;
 }
 
-.user-item a:hover,
-.user-item a:active {
+.card.user-item__content > a:hover,
+.card.user-item__content > a:active {
   background: #ffd900;
 }
 
 .card.user-item__content {
   padding: 0;
+  position: relative;
 }
 
 .user-item__image {
@@ -37,13 +40,37 @@
   color: #ffd900;
 }
 
-.user-item:hover h2,
-.user-item:active h2,
-.user-item:hover h3,
-.user-item:active h3 {
+.card.user-item__content > a:hover h2,
+.card.user-item__content > a:active h2,
+.card.user-item__content > a:hover h3,
+.card.user-item__content > a:active h3 {
   color: #292929;
 }
 
 .user-item__info h3 {
   margin: 0;
+}
+
+.user-item__edit-btn {
+  float: right;
+  position: absolute;
+  top: 0;
+  /* transform: translate(0, -50%); */
+  right: 0;
+  height: 1rem;
+}
+.user-item__edit-btn a {
+  max-width: 60px;
+  background-color: #666;
+  border-color: #666;
+  font-weight: bolder;
+  text-align: center;
+  margin:0;
+  padding: .75rem;
+}
+
+.user-item__edit-btn a:hover {
+  background: #ffd900;
+  color: #292929;
+  border-color: #ffd900;
 }
