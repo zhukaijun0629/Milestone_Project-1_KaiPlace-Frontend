@@ -36,6 +36,7 @@ const PlaceList = props => {
           creatorImage={place.creator.image}
           creatorName={place.creator.name}
           coordinates={place.location}
+          dateTakenAt={place.dateTakenAt}
           onDelete={props.onDeletePlace}
         />
       ))}

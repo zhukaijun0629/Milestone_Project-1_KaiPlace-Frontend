@@ -53,6 +53,10 @@ const UpdatePlace = () => {
               value: responseData.place.description,
               isValid: true,
             },
+            dateTakenAt: {
+              value: responseData.place.dateTakenAt,
+              isValid: true,
+            },
             address: {
               value: responseData.place.address,
               isValid: true,
@@ -73,6 +77,7 @@ const UpdatePlace = () => {
         "PATCH",
         JSON.stringify({
           description: formState.inputs.description.value,
+          dateTakenAt: formState.inputs.dateTakenAt.value,
           address: formState.inputs.address.value,
         }),
         {
@@ -118,6 +123,17 @@ const UpdatePlace = () => {
             initialValid={true}
           />
           <Input
+            id="dateTakenAt"
+            type="date"
+            element="input"
+            label="Date Taken At"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a valid date."
+            onInput={inputHandler}
+            initialValue={loadedPlace.dateTakenAt.split("T")[0]}
+            initialValid={true}
+          />
+          <Input
             id="address"
             element="input"
             label="Address"
@@ -130,6 +146,7 @@ const UpdatePlace = () => {
           <Button type="submit" disabled={!formState.isValid}>
             UPDATE PLACE
           </Button>
+          <Button inverse to={`/${auth.userId}/places`}>CANCEL</Button>
         </form>
       )}
     </React.Fragment>

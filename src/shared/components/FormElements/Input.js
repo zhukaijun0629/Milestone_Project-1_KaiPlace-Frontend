@@ -29,12 +29,20 @@ const Input = (props) => {
     isValid: props.initialValid || false,
   });
 
-  const { id, onInput } = props;
+  // const { id, onInput, initialValue, onInitialValue } = props;
+  const { id, onInput} = props;
+
   const { value, isValid } = inputState;
 
   useEffect(() => {
     onInput(id, value, isValid);
   }, [id, value, isValid, onInput]);
+
+  // useEffect(() => {
+  //   onInitialValue(id, initialValue, isValid);
+  // },[initialValue])
+
+
 
   const changeHandler = (event) => {
     dispatch({

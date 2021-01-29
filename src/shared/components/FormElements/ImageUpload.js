@@ -1,9 +1,14 @@
 import React, { useRef, useState, useEffect } from "react";
 import imageCompression from "browser-image-compression";
+import EXIF from "exif-js";
+// import date from "date-and-time";
+// import { sexagesimalToDecimal } from "geolib";
+// import moment from "moment-timezone";
 
 import Button from "./Button";
 import "./ImageUpload.css";
 import "./Input.css";
+import { getTakenAt, addressAt } from "../../util/exif-info-getter";
 
 const ImageUpload = (props) => {
   const [file, setFile] = useState();
@@ -23,15 +28,38 @@ const ImageUpload = (props) => {
     fileReader.readAsDataURL(file);
   }, [file]);
 
-  const pickedHandler = (event) => {
+  const pickedHandler = async (event) => {
     let pickedFile;
     let fileIsValid = isValid;
     if (event.target.files && event.target.files.length === 1) {
       pickedFile = event.target.files[0];
 
+      // const parser = require("exif-parser").create(pickedFile);
+      // const result = parser.parse();
+      // console.log(result);
+
+      const getGpsData = (pickedFile) => {
+        return new Promise((resolve, reject) => {
+          EXIF.getData(pickedFile, function () {
+            const allMetaData = EXIF.getAllTags(this);
+            resolve(allMetaData);
+          });
+        });
+      };
+
+      const metaData = await getGpsData(pickedFile);
+      // console.log(metaData);
+      const { takenAt, lat, lng } = await getTakenAt(metaData, pickedFile);
+      // console.log(takenAt);
+
+      let address;
+      if (lat && lng) {
+        address = await addressAt(lat, lng);
+      }
+      // console.log(address);
+
       const options = {
         maxSizeMB: 1,
-        maxWidthOrHeight: 1920,
         useWebWorker: true,
       };
 
@@ -40,6 +68,11 @@ const ImageUpload = (props) => {
           setFile(compressedFile);
           setIsValid(true);
           fileIsValid = true;
+          compressedFile.takenAt = takenAt;
+          compressedFile.lat = lat;
+          compressedFile.lng = lng;
+          compressedFile.address = address;
+          console.log(compressedFile);
           props.onInput(props.id, compressedFile, fileIsValid);
         })
         .catch(function (err) {

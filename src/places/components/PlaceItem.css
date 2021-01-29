@@ -25,18 +25,27 @@
   object-fit: scale-down;
 }
 
-.place-item__info h3 {
+.place-item__info {
+  display: flex;
+}
+
+.place-item__place-info {
+  flex-grow: 1;
+}
+
+.place-item__place-info h3 {
   padding-top: 0;
   margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
   margin-right: 0.5rem;
-  text-align: right;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
 }
-.place-item__info p {
-  margin: 0;
-  margin-left: 0.5rem;
-  font-size: 0.75rem;
+
+.place-item__place-address {
+  text-align: right;
+  cursor: pointer;
+  margin-left: auto;
+  width: fit-content;
 }
 
 .place-item__actions {
@@ -71,22 +80,54 @@
   z-index: 10;
 }
 
-a.place-item__creator-info {
+.place-item__creator-name a {
   margin: 0;
-  right: 0;
-  float: right;
-  align-items: center;
-  display: flex;
+  margin-left: 0.25rem;
   text-decoration: none;
   color: black;
-  justify-content: flex-end;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
+  justify-content: flex-start;
+  cursor: pointer;
 }
 
-.place-item__creator-info .avatar {
+.place-item__creator-avatar {
   width: 2.5rem;
   height: 2.5rem;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
+}
+
+.place-item__place-desc {
+  width: 100%;
+  align-content: center;
+  display: inline-block;
+}
+.place-item__place-desc p,
+.place-item__place-desc h3{
+  margin: 0;
+  margin-left: 1rem;
+  margin-bottom: 0.25rem;
+  margin-right: 1rem;
+  font-size: 0.8rem;
+  word-wrap: break-word;
+}
+
+.place-item__place-desc h3 {
+  text-align: right;
+}
+
+.place-item__place-edit {
+  display: flex;
+  float: right;
+  margin-right: 0.25rem;
+}
+.place-item__place-edit p,
+.place-item__place-edit a {
+  margin:0;
+  margin-right:0.5rem;
+  font-size:1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
 }
 
 @media (min-width: 414px) {
@@ -98,11 +139,14 @@ a.place-item__creator-info {
     height: 4rem;
     margin-left: 1rem;
   }
-  a.place-item__creator-info {
+  .place-item__creator-name a {
     font-size: 1rem;
   }
-  .place-item__info h3,
-  .place-item__info p {
+  .place-item__place-info h3,
+  .place-item__place-desc p,
+  .place-item__place-desc h3  {
     font-size: 1rem;
   }
+
+  
 }

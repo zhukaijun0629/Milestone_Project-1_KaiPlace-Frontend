@@ -36,6 +36,10 @@ const NewPlace = () => {
         value: null,
         isValid: false,
       },
+      dateTakenAt: {
+        value: null,
+        isValid: false,
+      },
     },
     false
   );
@@ -50,6 +54,9 @@ const NewPlace = () => {
       formData.append("description", formState.inputs.description.value);
       formData.append("address", formState.inputs.address.value);
       formData.append("image", formState.inputs.image.value);
+      formData.append("dateTakenAt", formState.inputs.dateTakenAt.value);
+      formData.append("lat", formState.inputs.image.value.lat||"");
+      formData.append("lng", formState.inputs.image.value.lng||"");
 
       await sendRequest(
         process.env.REACT_APP_BACKEND_URL + "/places",
@@ -82,25 +89,51 @@ const NewPlace = () => {
           onInput={inputHandler}
           errorText="Please provide an image."
         />
+        {formState.inputs.image.value && (
+          <Input
+            id="description"
+            element="textarea"
+            label="Description"
+            validators={[VALIDATOR_MINLENGTH(5)]}
+            errorText="Please enter a valid description (at least 5 characters)."
+            onInput={inputHandler}
+          />
+        )}
+        {formState.inputs.image.value && (
+          <Input
+            id="dateTakenAt"
+            type="date"
+            element="input"
+            label="Date Taken At"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a valid date."
+            onInput={inputHandler}
+            initialValue={
+              formState.inputs.image.value.takenAt
+                .toISOString()
+                .split("T")[0] || new Date().toISOString().split("T")[0]
+            }
+            initialValid={true}
+          />
+        )}
+        {formState.inputs.image.value && (
+          <Input
+            id="address"
+            element="input"
+            label="Address"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a valid address."
+            onInput={inputHandler}
+            initialValue={formState.inputs.image.value.address}
+            initialValid={true}
+          />
+        )}
 
-        <Input
-          id="description"
-          element="textarea"
-          label="Description"
-          validators={[VALIDATOR_MINLENGTH(5)]}
-          errorText="Please enter a valid description (at least 5 characters)."
-          onInput={inputHandler}
-        />
-        <Input
-          id="address"
-          element="input"
-          label="Address"
-          validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid address."
-          onInput={inputHandler}
-        />
         <Button type="submit" disabled={!formState.isValid}>
           ADD PLACE
+        </Button>
+        <Button inverse to={`/${auth.userId}/places`}>
+          CANCEL
         </Button>
       </form>
     </React.Fragment>

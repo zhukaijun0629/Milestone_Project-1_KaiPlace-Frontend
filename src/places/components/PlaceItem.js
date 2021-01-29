@@ -1,5 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import date from "date-and-time";
+import ordinal from 'date-and-time/plugin/ordinal';
+import day_of_week from 'date-and-time/plugin/day-of-week';
+
 
 import Avatar from "../../shared/components/UIElements/Avatar";
 import Card from "../../shared/components/UIElements/Card";
@@ -14,10 +18,14 @@ import { useHttpClient } from "../../shared/hooks/http-hook";
 import "./PlaceItem.css";
 
 const PlaceItem = (props) => {
+  date.plugin(ordinal);
+  date.plugin(day_of_week);
+
   const pid = props.id;
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [showMap, setShowMap] = useState(false);
+  // const [showButton, setShowButton] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const openMapHandler = () => setShowMap(true);
@@ -47,6 +55,23 @@ const PlaceItem = (props) => {
       props.onDelete(pid);
     } catch (err) {}
   };
+
+  // Future task: add a button to hide Edit and Delete buttons
+  // const showButton = false;
+  // let placeItemActions;
+  // if (auth.userId === props.creatorId) {
+  //   placeItemActions = (
+  //     <div className="place-item__actions">
+  //       <div className="place-item__actions-buttons">
+  //         <Button to={`/places/${props.id}`}>EDIT</Button>
+
+  //         <Button danger onClick={showDeleteWarningHandler}>
+  //           DELETE
+  //         </Button>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <React.Fragment>
@@ -91,41 +116,51 @@ const PlaceItem = (props) => {
             <img src={`${props.image}`} alt={props.description} />
           </div>
           <div className="place-item__info">
-            {/* <h2>{props.title}</h2> */}
-            <h3>{props.address}</h3>
-            <p>{props.description}</p>
-          </div>
-          <div className="place-item__actions">
-            <div className="place-item__actions-buttons">
-              <Button inverse onClick={openMapHandler}>
-                MAP
-              </Button>
-
-              {auth.userId === props.creatorId && (
-                <Button to={`/places/${props.id}`}>EDIT</Button>
+            {!window.location.pathname.includes(props.creatorId) &&
+              props.creatorId && (
+                // auth.userId !== props.creatorId &&
+                <div className="place-item__creator-avatar">
+                  <Link to={`/${props.creatorId}/places`}>
+                    <Avatar
+                      image={`${props.creatorImage}`}
+                      alt={props.creatorName}
+                    />
+                  </Link>
+                </div>
               )}
-
-              {auth.userId === props.creatorId && (
-                <Button danger onClick={showDeleteWarningHandler}>
-                  DELETE
-                </Button>
+            <div className="place-item__place-info">
+              <h3
+                className="place-item__place-address"
+                onClick={openMapHandler}
+              >
+                <>&#128205;</>
+                {props.address}
+              </h3>
+              {props.creatorName && (
+                <h3 className="place-item__creator-name">
+                  <a href={`/${props.creatorId}/places`}>{props.creatorName}</a>
+                </h3>
               )}
             </div>
-
-            {!window.location.pathname.includes(props.creatorId) &&
-              props.creatorId &&
-              auth.userId !== props.creatorId && (
-                <Link
-                  className="place-item__creator-info"
-                  to={`/${props.creatorId}/places`}
-                >
-                  <h3>{props.creatorName}</h3>
-                  <Avatar
-                    image={`${props.creatorImage}`}
-                    alt={props.creatorName}
-                  />
-                </Link>
-              )}
+          </div>
+          <div className="place-item__place-desc">
+            <p>{props.description}</p>
+            <h3>
+              {props.dateTakenAt &&
+                date.format(new Date(props.dateTakenAt), "ddd, MMM DDD YYYY")}
+            </h3>
+          </div>
+          <div className="place-item__place-edit">
+            {auth.userId === props.creatorId && (
+              <Link to={`/places/${props.id}`}>
+                <>&#9998;</>
+              </Link>
+            )}
+            {auth.userId === props.creatorId && (
+              <p onClick={showDeleteWarningHandler}>
+                <>&#128465;</>
+              </p>
+            )}
           </div>
         </Card>
       </li>
