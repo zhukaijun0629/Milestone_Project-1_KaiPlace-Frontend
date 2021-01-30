@@ -147,7 +147,7 @@ const PlaceItem = (props) => {
             <p>{props.description}</p>
             <h3>
               {props.dateTakenAt &&
-                date.format(new Date(props.dateTakenAt), "ddd, MMM DDD YYYY")}
+                date.format(new Date(props.dateTakenAt), "ddd, MMM DDD YYYY",true)}
             </h3>
           </div>
           <div className="place-item__place-edit">

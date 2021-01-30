@@ -72,7 +72,7 @@ const ImageUpload = (props) => {
           compressedFile.lat = lat;
           compressedFile.lng = lng;
           compressedFile.address = address;
-          console.log(compressedFile);
+          // console.log(compressedFile);
           props.onInput(props.id, compressedFile, fileIsValid);
         })
         .catch(function (err) {

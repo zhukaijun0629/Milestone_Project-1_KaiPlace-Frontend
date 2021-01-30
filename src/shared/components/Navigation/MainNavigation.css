@@ -28,6 +28,7 @@
 .main-navigation__title a {
   text-decoration: none;
   color: var(--color-text-light);
+  font-size: 1.75rem;
 }
 
 .main-navigation__header-nav {
@@ -45,5 +46,11 @@
 
   .main-navigation__header-nav {
     display: block;
+  }
+}
+
+@media (min-width: 414px) {
+  .main-navigation__title a {
+    font-size: 2rem;
   }
 }

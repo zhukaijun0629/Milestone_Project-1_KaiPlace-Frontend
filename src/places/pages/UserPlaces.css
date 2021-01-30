@@ -1,4 +1,71 @@
-.user-places-sub-header li.user-item  {
+@import "../../shared/components/variables.css";
+
+.user-places-sub-header {
+  display: flex;
+  width: 90%;
+  max-width: 40rem;
+  margin: 1rem auto;
+}
+
+.user-places-sub-header li.user-item {
   list-style-type: none;
-  margin: auto
+  margin: auto;
+  width: 80%;
+}
+
+.user-places-sub-header-btns {
+  position: absolute;
+  top: 32px;
+  transform: translateY(-45%);
+  left: 125px;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  z-index: 9999;
+  height: fit-content;
+  width: fit-content;
+}
+
+.user-places-sub-header-btns-story {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-places-sub-header-btns-story button {
+  font-size: 0.75rem;
+  margin: 0;
+  font-weight: bolder;
+}
+
+.user-places-sub-header-btns-story .button--default {
+  border: 1px solid #ff4382;
+  color: #ff4382;
+  background: transparent;
+}
+
+.user-places-sub-header-btns-story .button--inverse {
+  border: 1px solid var(--color-text-light);
+  color: var(--color-text-light);
+  background: transparent;
+}
+
+.user-places-sub-header-btns-story .button--noHover:hover {
+  border: 1px solid #ff4382;
+  color: #ff4382;
+  background: transparent;
+}
+.user-places-sub-header-btns-story .button--inverse:hover {
+  border: 1px solid var(--color-text-light);
+  color: var(--color-text-light);
+  background: transparent;
+}
+
+@media (min-width: 414px) {
+  .user-places-sub-header-btns-story button {
+    font-size: 1rem;
+  }
+  .user-places-sub-header-btns {
+    left: 150px;
+    transform: translateY(-50%);
+  }
 }

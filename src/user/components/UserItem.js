@@ -24,9 +24,14 @@ const UserItem = (props) => {
             </h3>
           </div>
         </Link>
-        <div className="user-item__edit-btn">
+        <div className="user-item__edit-btn edit">
           {auth.userId === props.id && (
             <Button to={`/${props.id}/update`}>EDIT</Button>
+          )}
+        </div>
+        <div className="user-item__edit-btn add">
+          {auth.userId === props.id && (
+            <Button to={"/places/new"}>+</Button>
           )}
         </div>
       </Card>

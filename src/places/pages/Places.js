@@ -21,7 +21,7 @@ const Places = () => {
     fetchRecentPlaces();
   }, [sendRequest]);
   
-  console.log(loadedPlaces)
+  // console.log(loadedPlaces)
 
   const placeDeletedHandler = (deletedPlaceId) => {
     setLoadedPlaces((prevPlaces) =>

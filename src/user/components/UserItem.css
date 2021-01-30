@@ -48,26 +48,40 @@
 }
 
 .user-item__info h3 {
-  font-size:.8rem;
+  font-size: 0.8rem;
   margin: 0;
 }
 
 .user-item__edit-btn {
   float: right;
   position: absolute;
-  top: 0;
-  /* transform: translate(0, -50%); */
   right: 0;
   height: 1rem;
 }
+
+.user-item__edit-btn.edit {
+  top: 0;
+}
+
+.user-item__edit-btn.add {
+  bottom: 0;
+  transform: translateY(-75%);
+}
+.user-item__edit-btn.add a {
+  font-size: 1.25rem;
+  color: var(--color-text-light);
+  background: #ff0055;
+  border-color: #ff0055;
+}
+
 .user-item__edit-btn a {
   max-width: 60px;
   background-color: #666;
   border-color: #666;
   font-weight: bolder;
   text-align: center;
-  margin:0;
-  padding: .8rem;
+  margin: 0;
+  padding: 0.8rem;
 }
 
 .user-item__edit-btn a:hover {
@@ -76,18 +90,23 @@
   border-color: #ffd900;
 }
 
+.user-item__edit-btn.add a:hover {
+  background: #ff4382;
+  border-color: #ff4382;
+  color: var(--color-text-light);
+}
+
 @media (min-width: 414px) {
   .user-item__info h2 {
     font-size: 1.5rem;
   }
-.user-item__info h3 {
-  font-size: 1.25rem;
-}
-
-.user-item__image {
-  width: 4rem;
-  height: 4rem;
-  margin-right: 1rem;
-}
-
+  .user-item__info h3 {
+    font-size: 1.25rem;
   }
+
+  .user-item__image {
+    width: 4rem;
+    height: 4rem;
+    margin-right: 1rem;
+  }
+}
