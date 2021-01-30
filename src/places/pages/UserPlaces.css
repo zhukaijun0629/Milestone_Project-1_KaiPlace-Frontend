@@ -14,14 +14,14 @@
 }
 
 .user-places-sub-header-btns {
-  position: absolute;
+  position: fixed;
   top: 32px;
   transform: translateY(-45%);
   left: 125px;
   margin: 0;
   display: flex;
   flex-direction: row;
-  z-index: 9999;
+  z-index: 7;
   height: fit-content;
   width: fit-content;
 }
