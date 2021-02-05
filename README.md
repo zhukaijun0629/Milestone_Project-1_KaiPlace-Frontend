@@ -1,6 +1,6 @@
 # Milestone_Project-1_KaiPlace-Frontend
 
-KAIPLACE ([kaiplace.web.app](kaiplace.web.app))  –  A Photo Sharing Social Networking Service (Web/IOS/Android) 
+KAIPLACE ([kaiplace.web.app](https://kaiplace.web.app))  –  A Photo Sharing Social Networking Service (Web/IOS/Android) 
 
 Front-end (deployed on Firebase Hosting): React, CSS 
 
