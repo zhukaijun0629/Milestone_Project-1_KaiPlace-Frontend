@@ -125,7 +125,7 @@ const NewPlace = () => {
             errorText="Please enter a valid address."
             onInput={inputHandler}
             initialValue={formState.inputs.image.value.address}
-            initialValid={true}
+            initialValid={formState.inputs.image.value.address ? true : false}
           />
         )}
 
